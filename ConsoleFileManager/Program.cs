@@ -60,6 +60,11 @@ namespace ConsoleFileManager
                         Exit();
                         args.Handled = true;
                         break;
+                    case Key.F3:
+                        (src, _) = GetPanels(leftPanel, rightPanel);
+                        FileEditor.Open(src.GetSelectedFullName());
+                        args.Handled = true;
+                        break;
                     case Key.F5:
                         (src, dst) = GetPanels(leftPanel, rightPanel);
                         controller.Copy(src, dst);
