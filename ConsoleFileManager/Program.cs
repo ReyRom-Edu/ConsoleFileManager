@@ -32,7 +32,7 @@ namespace ConsoleFileManager
                 ColorScheme = colorScheme,
             };
 
-            var helpBar = new Label("F5: Copy, F6: Move, F8: Delete")
+            var helpBar = new Label("F3: Open file, F4: Create file, F5: Copy, F6: Move, F8: Delete")
             {
                 X = 1,
                 Y = Pos.AnchorEnd(1),
@@ -63,6 +63,12 @@ namespace ConsoleFileManager
                     case Key.F3:
                         (src, _) = GetPanels(leftPanel, rightPanel);
                         FileEditor.Open(src.GetSelectedFullName());
+                        args.Handled = true;
+                        break;
+                    case Key.F4:
+                        (src, _) = GetPanels(leftPanel, rightPanel);
+                        CreateFileDialog.ShowDialog(src.CurrentPath);
+                        src.Refresh();
                         args.Handled = true;
                         break;
                     case Key.F5:

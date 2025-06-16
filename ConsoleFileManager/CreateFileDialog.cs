@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,25 +12,33 @@ namespace ConsoleFileManager
     {
         public static void ShowDialog(string directory)
         {
-            var dialog = new Dialog("Create file", 60, 10);
+            var dialog = new Dialog("Create file", 40, 8);
+
+
+            var fileNameLabel = new Label("Enter filename")
+            {
+                X = 2,
+                Y = 1,
+            };
+
 
             var fileNameField = new TextField("")
             {
                 X = 2,
-                Y = 1,
+                Y = 2,
                 Width = Dim.Fill() - 2
             }; 
             
 
             var createButton = new Button("Create")
             {
-                X = Pos.Left(dialog) + 3,
-                Y = Pos.Bottom(dialog) - 3
+                X = 2,
+                Y = 5
             };
             var cancelButton = new Button("Cancel")
             {
-                X = Pos.Right(dialog) -3,
-                Y = Pos.Bottom(dialog) - 3
+                X = 12,
+                Y = 5
             };
 
             createButton.Clicked += () =>
@@ -63,10 +72,11 @@ namespace ConsoleFileManager
 
             cancelButton.Clicked += () => Application.RequestStop();
 
-
+            dialog.Add(fileNameLabel);
             dialog.Add(fileNameField);
-            dialog.Add(cancelButton);
             dialog.Add(createButton);
+            dialog.Add(cancelButton);
+            
 
             Application.Run(dialog);
         }
